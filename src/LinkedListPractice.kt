@@ -37,6 +37,30 @@ class LinkedListPractice(var head: Node? = null) {
         }
         before?.next = before?.next?.next
     }
+
+    fun display():List<String> {
+        var curr = head
+        var list = mutableListOf<String>()
+        while(curr != null) {
+            list.add(curr.data)
+            curr = curr.next
+        }
+        return list
+    }
+
+    fun reverse() {
+        var curr = head
+        var prev: Node? = null
+        var next: Node? = null
+        while(curr != null) {
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        }
+        head = prev
+    }
+    
 }
 
 data class PracticeNode(val data: String, var next: Node? = null)
@@ -48,9 +72,12 @@ fun main() {
     ll.add("2")
     ll.add("3")
     ll.add("4")
+    ll.add("hi")
     println(ll.get(2))
     ll.remove(2)
     println(ll.get(2))
     println(ll.get(0))
-
+    println(ll.display())
+    ll.reverse()
+    println(ll.display())
 }
